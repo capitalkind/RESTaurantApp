@@ -1,0 +1,16 @@
+<h1>RESTaurant App</h1>
+<h3>New Employee</h3>
+
+<nav>
+  <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log In", log_in_path, method: :get %>
+</nav>
+
+<%= form_for @employee do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :permission %>
+  <%= f.select :permission, [['Admin', 2], ['Server', 1]] %>
+  <%= f.submit %>
+<% end %>
