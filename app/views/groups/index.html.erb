@@ -1,0 +1,34 @@
+<h1>RESTaurant App</h1>
+<h4>Group Index</h4>
+  <nav>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
+    <br>
+    <%= link_to "New Menu Item", new_food_path, method: :get %>
+  </nav>
+
+  <div class="container">
+    <table class="table" id="link-table">
+      <thead>
+        <tr>
+          <th>Guest Count</th>
+          <th>Payment Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @groups.each do |group| %>
+
+        <tr>
+          <td>
+            <%= link_to group.guest_count, edit_group_path(group) %>
+          </td>
+          <td>
+            <%= link_to group.paid_for, edit_group_path(group) %>
+          </td>
+        </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>

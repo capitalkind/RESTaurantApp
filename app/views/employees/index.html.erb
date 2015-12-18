@@ -1,8 +1,9 @@
-<h1>RESTaurant App Employee Index</h1>
-<h3>Logged in as <%= @current_employee.username %></h3>
+<h1>RESTaurant App</h1>
+<h3>Employee Index</h3>
+<h4>Logged in as <%= current_employee.username %></h4>
 
 <nav>
-  <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log In", log_in_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
+  <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
 </nav>
 
 <% if current_employee.permission == 2 %>
@@ -36,14 +37,18 @@
 
   <div class="container">
     <%= link_to "Menu Index", foods_path, method: :get %>
+    <br>
+    <%= link_to "New Employee", new_employee_path, method: :get %>
   </div>
 
-  <p>
-  Here an admin could edit the food table? Maybe with a form for @food do |f|?
-  </p>
-
-
 <% end %>
+
+<div class="container">
+  <h4>Add A New Group</h4>
+    <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Group Index", groups_path, method: :get %>
+</div>
+
+
 
 <p>
 Here anyone will be able to add a group

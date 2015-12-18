@@ -1,5 +1,5 @@
 <h1>RESTaurant App</h1>
-<h3>Edit Employee</h3>
+<h3>Edit <%= @employee.username %></h3>
 
 <nav>
   <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log In", log_in_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
