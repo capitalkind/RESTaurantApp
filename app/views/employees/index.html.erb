@@ -1,4 +1,5 @@
 <h1>RESTaurant App Employee Index</h1>
+<h3>Logged in as <%= @current_employee.username %></h3>
 
 <nav>
   <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log In", log_in_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
@@ -23,7 +24,7 @@
             <%= link_to employee.username, edit_employee_path(employee) %>
           </td>
           <td>
-            <%= link_to employee.permission, edit_employee_path(employee) %> Years Old
+            <%= link_to employee.permission, edit_employee_path(employee) %>
           </td>
         </tr>
 
@@ -33,11 +34,25 @@
     </table>
   </div>
 
+  <div class="container">
+    <%= link_to "Menu Index", foods_path, method: :get %>
+  </div>
+
+  <p>
+  Here an admin could edit the food table? Maybe with a form for @food do |f|?
+  </p>
+
 
 <% end %>
 
 <p>
-Here is some text
+Here anyone will be able to add a group
+<br>
+You will be able to edit groups with individual guests
+<br>
+Each guest will have a collection to select food
+<br>
+Need the ability to edit the foods, make new, edit, index/show pages and then have form fors
 </p>
 
 

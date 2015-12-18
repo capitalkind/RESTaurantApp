@@ -1,0 +1,38 @@
+<h1>Menu Index</h1>
+
+  <nav>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
+    <br>
+    <%= link_to "New Menu Item", new_food_path, method: :get %>
+  </nav>
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @foods.each do |food| %>
+
+        <tr>
+          <td>
+            <%= @food.name %>
+          </td>
+          <td>
+            <%= @food.description %>
+          </td>
+          <td>
+            <%= @food.price %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  </div>

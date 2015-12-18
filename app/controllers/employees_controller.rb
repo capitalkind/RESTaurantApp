@@ -5,14 +5,15 @@ class EmployeesController < ApplicationController
   end
 
   def index
+    @current_employee = current_employee
     @employee = Employee.new
     @employees = Employee.all
-    @food = Food.new
-    @foods = Food.all
-    @group = Group.new
-    @groups = Group.all
-    @guest = Guest.new
-    @guests = Guest.all
+    # @food = Food.new
+    # @foods = Food.all
+    # @group = Group.new
+    # @groups = Group.all
+    # @guest = Guest.new
+    # @guests = Guest.all
 
   end
 
