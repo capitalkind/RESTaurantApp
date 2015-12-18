@@ -6,15 +6,38 @@
 
 <% if current_employee.permission == 2 %>
 
-  <% @employees.each do |employee| %>
-    <%= employee.username %>
-    <br>
-    <%= employee.permission %>
-    <br>
-  <% end %>
+  <div class="container">
+    <table class="table" id="link-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Permission</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @employees.each do |employee| %>
+
+        <tr>
+          <td>
+            <%= link_to employee.username, edit_employee_path(employee) %>
+          </td>
+          <td>
+            <%= link_to employee.permission, edit_employee_path(employee) %> Years Old
+          </td>
+        </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
 
 <% end %>
 
 <p>
 Here is some text
 </p>
+
+

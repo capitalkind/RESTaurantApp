@@ -7,11 +7,28 @@ class EmployeesController < ApplicationController
   def index
     @employee = Employee.new
     @employees = Employee.all
+    @food = Food.new
+    @foods = Food.all
+    @group = Group.new
+    @groups = Group.all
+    @guest = Guest.new
+    @guests = Guest.all
+
   end
 
   def create
     Employee.create(employee_params)
     redirect_to root_path
+  end
+
+  def edit
+    @employee = Employee.find(params[:id])
+  end
+
+  def update
+    employee = Employee.find(params[:id])
+    employee.update(employee_params)
+    redirect_to employees_path
   end
 
   private
