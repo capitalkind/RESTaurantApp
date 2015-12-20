@@ -1,29 +1,44 @@
 <h1>RESTaurant App</h1>
 <h4>Group Index</h4>
+<h4>Logged in as <%= current_employee.username %></h4>
+
   <nav>
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
     <br>
-    <%= link_to "New Menu Item", new_food_path, method: :get %>
+    <%= link_to "New Group", new_group_path, method: :get %>
   </nav>
 
   <div class="container">
+    <h5>Groups being served by <%= current_employee.username %></h5>
     <table class="table" id="link-table">
       <thead>
         <tr>
           <th>Guest Count</th>
+          <th>Server</th>
+          <th>Edit Group</th>
+          <th>Current Check Total</th>
           <th>Payment Status</th>
         </tr>
       </thead>
       <tbody>
 
-        <% @groups.each do |group| %>
+        <% current_employee.groups.each do |group| %>
 
         <tr>
           <td>
-            <%= link_to group.guest_count, edit_group_path(group) %>
+            <%= group.guest_count %> Guests
           </td>
           <td>
-            <%= link_to group.paid_for, edit_group_path(group) %>
+            <%= group.employee.username %>
+          </td>
+          <td>
+            <%= link_to "Edit Group", edit_group_path(group) %>
+          </td>
+          <td>
+            $<%= group.the_check() %> Dollars
+          </td>
+          <td>
+            <%= group.paid_for %>
           </td>
         </tr>
 
@@ -32,3 +47,4 @@
       </tbody>
     </table>
   </div>
+

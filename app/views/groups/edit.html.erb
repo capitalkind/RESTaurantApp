@@ -1,9 +1,11 @@
 <h1>RESTaurant App</h1>
 <h4>Edit Group</h4>
+<h4>Logged in as <%= current_employee.username %></h4>
+
   <nav>
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
     <br>
-    <%= link_to "New Menu Item", new_food_path, method: :get %>
+    <%= link_to "Group Index", groups_path, method: :get %>
   </nav>
 
 
@@ -11,8 +13,14 @@
     <%= form_for @group do |f| %>
       <%= f.label :guest_count %>
       <%= f.number_field :guest_count %>
-      <%= f.label :paid_for %>
+      <%= f.label "Server" %>
+      <%= f.collection_select :employee_id, Employee.all, :id, :username %>
+      <%= f.label "Payment Status" %>
       <%= f.select :paid_for, [['Paid', 2], ['Unpaid', 1]] %>
       <%= f.submit %>
     <% end %>
   </div>
+
+  <%= button_to "Delete Group", group_path(@group), method: :delete %>
+
+

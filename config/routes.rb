@@ -3,12 +3,10 @@ Rails.application.routes.draw do
 
 
   resources :employees
-
-  resources :foods
-
   resources :groups do
-    resources :guests
+    resources :orders
   end
+  resources :foods
 
   resources :sessions
 
@@ -16,7 +14,6 @@ Rails.application.routes.draw do
 
   get '/log_in' => 'employees#log_in'
   # get '/profile' => 'employees#profile'
-
 
 
   post '/sessions' => 'sessions#create'

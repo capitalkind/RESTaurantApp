@@ -5,6 +5,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :paid_for
       t.references :employee, index: true, foreign_key: true
 
+
       t.timestamps null: false
     end
   end

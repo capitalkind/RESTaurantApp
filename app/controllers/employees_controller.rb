@@ -2,6 +2,10 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    @group = Group.new
+    @groups = Group.all
+    @order = Order.new
+    @orders = Order.all
   end
 
   def index
@@ -10,6 +14,10 @@ class EmployeesController < ApplicationController
     @employees = Employee.all
     @group = Group.new
     @groups = Group.all
+    @order = Order.new
+    @orders = Order.all
+    # @employeeorders = current_employee.orders.where(order_up: 0)
+    # @employeegroups = current_employee.groups.where(paid_for: 0)
   end
 
   def create
@@ -22,7 +30,8 @@ class EmployeesController < ApplicationController
   end
 
   def update
-    employee = Employee.find(params[:id])
+    @order = Order.find(params[:id])
+    @employee = Employee.find(params[:id])
     employee.update(employee_params)
     redirect_to employees_path
   end
@@ -36,7 +45,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:username, :password, :permission)
+    params.require(:employee).permit(:username, :password, :permission, :group_id, :order_id)
   end
 
 

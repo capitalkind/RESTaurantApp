@@ -1,0 +1,14 @@
+<h1>RESTaurant App</h1>
+<h3>Edit Order For Group #<%= @order.group.id %></h3>
+<h4>Logged in as <%= current_employee.username %></h4>
+
+
+    <%= form_for @order, url: group_order_path do |f| %>
+      <%= f.label "Food" %>
+      <%= f.collection_select :food_id, Food.all, :id, :name %>
+      <%= f.label :order_up %>
+      <%= f.select :order_up, [['Not Ready', 1], ['Ready', 2]] %>
+      <%= f.submit %>
+    <% end %>
+
+

@@ -1,11 +1,16 @@
 class GroupsController < ApplicationController
 
   def index
+    @employee = Employee.new
+    @employees = Employee.all
     @group = Group.new
     @groups = Group.all
+    @order = Order.new
+    @orders = Order.all
   end
 
   def new
+    @employee = Employee.new
     @group = Group.new
   end
 
@@ -16,6 +21,8 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
+    @order = Order.new
+    @orders = Order.all
   end
 
  def update
@@ -24,10 +31,16 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def show
+    @group = Group.find(params[:id])
+    @order = Order.new
+    @orders = Order.where(id = @group.id)
+  end
+
   def destroy
     group = Group.find(params[:id])
-    group.delete
-    redirect_to groups_path
+    group.destroy
+    redirect_to employees_path(current_employee)
   end
 
   private

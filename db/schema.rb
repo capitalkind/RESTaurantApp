@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217205337) do
+ActiveRecord::Schema.define(version: 20151220011821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,17 +42,18 @@ ActiveRecord::Schema.define(version: 20151217205337) do
 
   add_index "groups", ["employee_id"], name: "index_groups_on_employee_id", using: :btree
 
-  create_table "guests", force: :cascade do |t|
-    t.integer  "group_id"
+  create_table "orders", force: :cascade do |t|
+    t.integer  "order_up"
     t.integer  "food_id"
+    t.integer  "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "guests", ["food_id"], name: "index_guests_on_food_id", using: :btree
-  add_index "guests", ["group_id"], name: "index_guests_on_group_id", using: :btree
+  add_index "orders", ["food_id"], name: "index_orders_on_food_id", using: :btree
+  add_index "orders", ["group_id"], name: "index_orders_on_group_id", using: :btree
 
   add_foreign_key "groups", "employees"
-  add_foreign_key "guests", "foods"
-  add_foreign_key "guests", "groups"
+  add_foreign_key "orders", "foods"
+  add_foreign_key "orders", "groups"
 end

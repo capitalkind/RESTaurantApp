@@ -8,7 +8,13 @@
 
 <% if current_employee.permission == 2 %>
 
+<div class="container">
+  <h4>Admin Controls</h4>
+    <%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>
+  </div>
+
   <div class="container">
+    <h5>All Employees</h5>
     <table class="table" id="link-table">
       <thead>
         <tr>
@@ -35,29 +41,94 @@
     </table>
   </div>
 
-  <div class="container">
-    <%= link_to "Menu Index", foods_path, method: :get %>
-    <br>
-    <%= link_to "New Employee", new_employee_path, method: :get %>
-  </div>
-
 <% end %>
 
-<div class="container">
-  <h4>Add A New Group</h4>
-    <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Group Index", groups_path, method: :get %>
-</div>
+  <div class="container">
+    <h4>Group Controls</h4>
+      <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Groups", groups_path, method: :get %>
+  </div>
+
+    <div class="container">
+      <h5>Groups being served by <%= current_employee.username %></h5>
+      <table class="table" id="link-table">
+        <thead>
+          <tr>
+            <th>Group #</th>
+            <th>Guest Count</th>
+            <th>Server</th>
+            <th>Add Order</th>
+            <th>Current Check Total</th>
+            <th>Payment Status</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% current_employee.groups.each do |group| %>
+
+          <tr>
+            <td>
+              <%= group.id %>
+            </td>
+            <td>
+              <%= group.guest_count %> Guests
+            </td>
+            <td>
+              <%= group.employee.username %>
+            </td>
+            <td>
+              <%= link_to "New Order", group_path(group) %>
+            <td>
+              $<%= group.the_check() %> Dollars
+            </td>
+            <td>
+              <%= group.paid_for %>
+            </td>
+          </tr>
+
+          <% end %>
+
+        </tbody>
+      </table>
+    </div>
 
 
 
-<p>
-Here anyone will be able to add a group
-<br>
-You will be able to edit groups with individual guests
-<br>
-Each guest will have a collection to select food
-<br>
-Need the ability to edit the foods, make new, edit, index/show pages and then have form fors
-</p>
+  <div class="container">
+    <h5>Orders for Groups being served by <%= current_employee.username %></h5>
+    <h5>Orders</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Group #</th>
+          <th>Food</th>
+          <th>Price</th>
+          <th>Edit Order</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <tbody>
 
+        <% current_employee.orders.each do |order| %>
 
+        <tr>
+          <td>
+            <%= order.group.id %>
+          <td>
+            <%= order.food.name %>
+          </td>
+          <td>
+            $<%= order.food.price %> Dollars
+          </td>
+          <td>
+            <%= link_to "Edit Order", edit_group_order_path(current_employee, order) %>
+          </td>
+          <td>
+            <%= order.order_up.to_s %>
+          </td>
+        </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>

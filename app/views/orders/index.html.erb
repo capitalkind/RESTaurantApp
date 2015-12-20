@@ -1,0 +1,34 @@
+<div class="container">
+    <h5>Orders for Groups being served by <%= current_employee.username %></h5>
+    <h5>Orders</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Group #</th>
+          <th>Food</th>
+          <th>Price</th>
+          <th>Edit Order</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% current_employee.orders.each do |order| %>
+
+        <tr>
+          <td>
+            <%= order.group.id %>
+          <td>
+            <%= order.food.name %>
+          </td>
+          <td>
+            $<%= order.food.price %> Dollars
+          </td>
+          <td>
+            <%= link_to "Edit Order", edit_group_order_path(current_employee, order) %>
+        </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
