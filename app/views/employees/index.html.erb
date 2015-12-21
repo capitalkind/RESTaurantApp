@@ -168,8 +168,8 @@
             <th>Guest Count</th>
             <th>Server</th>
             <th>Add Order</th>
-            <th>Current Check Total</th>
-            <th>Payment Status</th>
+            <th>Current Check Sub-Total</th>
+            <th>Payment</th>
           </tr>
         </thead>
         <tbody>
@@ -187,16 +187,12 @@
               <%= party.employee.username %>
             </td>
             <td>
-              <%= link_to "New Order", party_path(party) %>
+              <%= link_to "New Order", new_party_order_path(party) %>
             <td>
               $<%= "%.2f" % party.the_check() %> Dollars
             </td>
             <td>
-              <% if party.paid_for == 1 %>
-                Unpaid
-                <% else %>
-                Paid
-              <% end %>
+              <%= link_to "Party Receipt", party_path(party) %>
             </td>
           </tr>
 

@@ -3,19 +3,17 @@ class OrdersController < ApplicationController
   def index
     @order = Order.new
     @orders = Order.all
-    @group = Group.new
-    @groups = Group.all
+    @party = Party.new
+    @parties = Party.all
   end
 
   def new
     @order = Order.new
-    @orders = Order.all
-    @group = Group.new
-    @groups = Group.all
+    @party = Party.find(params[:party_id])
   end
 
   def create
-    new_order = Order.create(order_params)
+    order = Order.create(order_params)
     redirect_to employees_path
   end
 

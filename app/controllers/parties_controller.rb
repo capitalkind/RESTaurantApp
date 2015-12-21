@@ -33,8 +33,8 @@ class PartiesController < ApplicationController
 
   def show
     @party = Party.find(params[:id])
-    @order = Order.new
-    @orders = Order.where(id = @party.id)
+    # @order = Order.new
+    # @orders = Order.where(id = @party.id)
   end
 
   def destroy

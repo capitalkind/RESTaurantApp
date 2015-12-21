@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap.min
  */
 body{
   text-align: center !important;
@@ -32,7 +33,9 @@ th{
 form{
   display: inline !important;
 }
-
+li{
+  list-style: none !important;
+}
 
 .color1{
   background: green;
