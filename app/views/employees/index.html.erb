@@ -48,16 +48,16 @@
   </div>
 
 <div class="container">
-    <h4>Group Controls</h4>
-      <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Groups", groups_path, method: :get %>
+    <h4>Party Controls</h4>
+      <%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
   </div>
 
     <div class="container">
-      <h5>All Current Groups</h5>
+      <h5>All Current Parties</h5>
       <table class="table" id="link-table">
         <thead>
           <tr>
-            <th>Group #</th>
+            <th>Party #</th>
             <th>Guest Count</th>
             <th>Server</th>
             <th>Add Order</th>
@@ -67,25 +67,25 @@
         </thead>
         <tbody>
 
-          <% @groups.each do |group| %>
+          <% @parties.each do |party| %>
 
           <tr>
             <td>
-              <%= group.id %>
+              <%= party.id %>
             </td>
             <td>
-              <%= group.guest_count %> Guests
+              <%= party.guest_count %> Guests
             </td>
             <td>
-              <%= group.employee.username %>
+              <%= party.employee.username %>
             </td>
             <td>
-              <%= link_to "New Order", group_path(group) %>
+              <%= link_to "New Order", party_path(party) %>
             <td>
-              $<%= group.the_check() %> Dollars
+              $<%= "%.2f" % party.the_check() %> Dollars
             </td>
             <td>
-              <% if group.paid_for == 1 %>
+              <% if party.paid_for == 1 %>
                 Unpaid
                 <% else %>
                 Paid
@@ -105,7 +105,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Group #</th>
+          <th>Party #</th>
           <th>Food</th>
           <th>Server</th>
           <th>Price</th>
@@ -119,18 +119,18 @@
 
         <tr>
           <td>
-            <%= order.group.id %>
+            <%= order.party_id %>
           <td>
             <%= order.food.name %>
           </td>
           <td>
-              <%= order.group.employee.username %>
-            </td>
-          <td>
-            $<%= order.food.price %> Dollars
+            <%= order.party.employee.username %>
           </td>
           <td>
-            <%= link_to "Edit Order", edit_group_order_path(current_employee, order) %>
+            $<%= "%.2f" % order.food.price %> Dollars
+          </td>
+          <td>
+            <%= link_to "Edit Order", edit_party_order_path(current_employee, order) %>
           </td>
           <td>
             <% if order.order_up == 1 %>
@@ -155,16 +155,16 @@
 <!-- SERVER VIEW -->
 
   <div class="container">
-    <h4>Group Controls</h4>
-      <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Groups", groups_path, method: :get %>
+    <h4>Party Controls</h4>
+      <%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
   </div>
 
     <div class="container">
-      <h5>Groups being served by <%= current_employee.username %></h5>
+      <h5>Parties being served by <%= current_employee.username %></h5>
       <table class="table" id="link-table">
         <thead>
           <tr>
-            <th>Group #</th>
+            <th>Party #</th>
             <th>Guest Count</th>
             <th>Server</th>
             <th>Add Order</th>
@@ -174,25 +174,25 @@
         </thead>
         <tbody>
 
-          <% current_employee.groups.each do |group| %>
+          <% current_employee.parties.each do |party| %>
 
           <tr>
             <td>
-              <%= group.id %>
+              <%= party.id %>
             </td>
             <td>
-              <%= group.guest_count %> Guests
+              <%= party.guest_count %> Guests
             </td>
             <td>
-              <%= group.employee.username %>
+              <%= party.employee.username %>
             </td>
             <td>
-              <%= link_to "New Order", group_path(group) %>
+              <%= link_to "New Order", party_path(party) %>
             <td>
-              $<%= group.the_check() %> Dollars
+              $<%= "%.2f" % party.the_check() %> Dollars
             </td>
             <td>
-              <% if group.paid_for == 1 %>
+              <% if party.paid_for == 1 %>
                 Unpaid
                 <% else %>
                 Paid
@@ -207,11 +207,11 @@
     </div>
 
   <div class="container">
-    <h5>Orders for Groups being served by <%= current_employee.username %></h5>
+    <h5>Orders for Parties being served by <%= current_employee.username %></h5>
     <table class="table">
       <thead>
         <tr>
-          <th>Group #</th>
+          <th>Party #</th>
           <th>Food</th>
           <th>Price</th>
           <th>Edit Order</th>
@@ -224,15 +224,15 @@
 
         <tr>
           <td>
-            <%= order.group.id %>
+            <%= order.party_id %>
           <td>
             <%= order.food.name %>
           </td>
           <td>
-            $<%= order.food.price %> Dollars
+            $<%= "%.2f" % order.food.price %> Dollars
           </td>
           <td>
-            <%= link_to "Edit Order", edit_group_order_path(current_employee, order) %>
+            <%= link_to "Edit Order", edit_party_order_path(current_employee, order) %>
           </td>
           <td>
             <% if order.order_up == 1 %>
@@ -261,7 +261,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Group #</th>
+          <th>Party #</th>
           <th>Food</th>
           <th>Time Ordered</th>
           <th>Order Status</th>
@@ -273,7 +273,7 @@
 
         <tr data-timer="<% order.order_time %>">
           <td>
-            <%= order.group.id %>
+            <%= order.party_id %>
           </td>
           <td>
             <%= order.food.name %>
@@ -282,7 +282,7 @@
             <%= order.order_time.round %> Minutes Ago
           </td>
           <td>
-            <%= form_for order, url: group_order_path(current_employee, order) do |f| %>
+            <%= form_for order, url: party_order_path(current_employee, order) do |f| %>
             <input type="hidden" name="order[order_up]" value="2">
             <%= f.submit "Complete Order" %>
             <% end %>

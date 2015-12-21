@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
 
   resources :employees
-  resources :groups do
+  resources :parties do
     resources :orders
   end
   resources :foods

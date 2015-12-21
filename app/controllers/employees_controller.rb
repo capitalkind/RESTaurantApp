@@ -2,8 +2,8 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
-    @group = Group.new
-    @groups = Group.all
+    @party = Party.new
+    @parties = Party.all
     @order = Order.new
     @orders = Order.all
   end
@@ -12,8 +12,8 @@ class EmployeesController < ApplicationController
     # @current_employee = current_employee
     @employee = Employee.new
     @employees = Employee.all
-    @group = Group.new
-    @groups = Group.all
+    @party = Party.new
+    @parties = Party.all
     @order = Order.new
     @orders = Order.all
     @notup = Order.where(:order_up => 1)
@@ -46,7 +46,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:username, :password, :permission, :group_id, :order_id)
+    params.require(:employee).permit(:username, :password, :permission, :party_id, :order_id)
   end
 
 

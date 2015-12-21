@@ -1,16 +1,16 @@
 <h1>RESTaurant App</h1>
-<h4>Add A New Group</h4>
+<h4>Add A New Party</h4>
 <h4>Logged in as <%= current_employee.username %></h4>
 
   <nav>
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
     <br>
-    <%= link_to "Group Index", groups_path, method: :get %>
+    <%= link_to "Party Index", parties_path, method: :get %>
   </nav>
 
 
  <div class="container">
-    <%= form_for @group do |f| %>
+    <%= form_for @party do |f| %>
       <%= f.label :guest_count %>
       <%= f.number_field :guest_count %>
       <%= f.label "Server" %>

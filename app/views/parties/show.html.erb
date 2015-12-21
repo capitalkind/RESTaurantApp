@@ -1,16 +1,17 @@
 <h1>RESTaurant App</h1>
-<h3>Edit Order For Group #<%= @group.id %></h3>
+<h3>New Order For Party #<%= @party.id %></h3>
 <h4>Logged in as <%= current_employee.username %></h4>
-  <nav>
+<nav>
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
-    <br>
-    <%= link_to "Group Index", groups_path, method: :get %>
-  </nav>
+</nav>
 
-    <%= form_for @order, url: group_order_path(@group) do |f| %>
+  <%= form_for @order, url: party_orders_path(@party.id) do |f| %>
       <%= f.label "Food" %>
       <%= f.collection_select :food_id, Food.all, :id, :name %>
       <%= f.label :order_up %>
       <%= f.select :order_up, [['Cooking', 1], ['Ready', 2], ['Served', 3]] %>
+      <%= f.hidden_field :party_id, :value => @party.id %>
       <%= f.submit %>
     <% end %>
+
+

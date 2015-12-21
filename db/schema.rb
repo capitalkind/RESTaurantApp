@@ -27,12 +27,23 @@ ActiveRecord::Schema.define(version: 20151220011821) do
   create_table "foods", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "price"
+    t.decimal  "price"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
+    t.integer  "order_up"
+    t.integer  "food_id"
+    t.integer  "party_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["food_id"], name: "index_orders_on_food_id", using: :btree
+  add_index "orders", ["party_id"], name: "index_orders_on_party_id", using: :btree
+
+  create_table "parties", force: :cascade do |t|
     t.integer  "guest_count"
     t.integer  "paid_for"
     t.integer  "employee_id"
@@ -40,20 +51,9 @@ ActiveRecord::Schema.define(version: 20151220011821) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "groups", ["employee_id"], name: "index_groups_on_employee_id", using: :btree
+  add_index "parties", ["employee_id"], name: "index_parties_on_employee_id", using: :btree
 
-  create_table "orders", force: :cascade do |t|
-    t.integer  "order_up"
-    t.integer  "food_id"
-    t.integer  "group_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "orders", ["food_id"], name: "index_orders_on_food_id", using: :btree
-  add_index "orders", ["group_id"], name: "index_orders_on_group_id", using: :btree
-
-  add_foreign_key "groups", "employees"
   add_foreign_key "orders", "foods"
-  add_foreign_key "orders", "groups"
+  add_foreign_key "orders", "parties"
+  add_foreign_key "parties", "employees"
 end

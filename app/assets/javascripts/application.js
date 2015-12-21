@@ -18,22 +18,28 @@ window.onload = init;
   function init(){
 
 ///shorter times for demontration purposes
-  function orderColor(element, curNumber){
-    curNumber++;
+  // function orderColor(element, curNumber){
+  //   curNumber++;
 
-    if(curNumber > 4){
-      curNumber = 4;
-    }
-    console.log(curNumber);
-    element.addClass('color' + curNumber, 10000);
-    element.attr('class', 'color' + curNumber);
-    setTimeout(function(){
-      orderColor(element, curNumber)}, 10000);
-  }
+  //   if(curNumber > 4){
+  //     curNumber = 4;
+  //   }
+  //   console.log(curNumber);
+  //   element.addClass('color' + curNumber, 10000);
+  //   element.attr('class', 'color' + curNumber);
+  //   setTimeout(function(){
+  //     orderColor(element, curNumber)}, 10000);
+  // }
 
-  orderColor($('#order-body'), 0);
+  // orderColor($('#order-body'), 0);
 
-}
+  var rows = $('.table tr');
+  rows.hide();
+  $('.row-data:last-child').after(rows);
+  rows.fadeIn(700);
+
+
+
 
 // var $orderRow = $('#order-body');
 // $orderRow.children('tr').each(function(){
@@ -41,16 +47,16 @@ window.onload = init;
 //     var time = $row.data("timer");
 //     console.log(time);
 
-//     if (time < 3){
+//     if (time < 5){
 //       $row.css("background-color", "green");
-//     } else if (time >= 18){
-//       $row.css("background-color", "red");
-//     } else if (time >= 7){
+//     } else if (time >= 5){
 //       $row.css("background-color", "yellow");
-//     } else if (time > 12){
+//     } else if (time >= 10){
 //       $row.css("background-color", "orange");
+//     } else if (time > 15){
+//       $row.css("background-color", "red");
 //     }
 // });
 
-
+}
 

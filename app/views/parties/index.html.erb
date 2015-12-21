@@ -1,44 +1,44 @@
 <h1>RESTaurant App</h1>
-<h4>Group Index</h4>
+<h4>Party Index</h4>
 <h4>Logged in as <%= current_employee.username %></h4>
 
   <nav>
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
     <br>
-    <%= link_to "New Group", new_group_path, method: :get %>
+    <%= link_to "New Party", new_party_path, method: :get %>
   </nav>
 
   <div class="container">
-    <h5>Groups being served by <%= current_employee.username %></h5>
+    <h5>Parties being served by <%= current_employee.username %></h5>
     <table class="table" id="link-table">
       <thead>
         <tr>
           <th>Guest Count</th>
           <th>Server</th>
-          <th>Edit Group</th>
+          <th>Edit Party</th>
           <th>Current Check Total</th>
           <th>Payment Status</th>
         </tr>
       </thead>
       <tbody>
 
-        <% current_employee.groups.each do |group| %>
+        <% current_employee.parties.each do |party| %>
 
         <tr>
           <td>
-            <%= group.guest_count %> Guests
+            <%= party.guest_count %> Guests
           </td>
           <td>
-            <%= group.employee.username %>
+            <%= party.employee.username %>
           </td>
           <td>
-            <%= link_to "Edit Group", edit_group_path(group) %>
+            <%= link_to "Edit Party", edit_party_path(party) %>
           </td>
           <td>
-            $<%= group.the_check() %> Dollars
+            $<%= party.the_check() %> Dollars
           </td>
           <td>
-            <% if group.paid_for == 1 %>
+            <% if party.paid_for == 1 %>
                 Unpaid
                 <% else %>
                 Paid
