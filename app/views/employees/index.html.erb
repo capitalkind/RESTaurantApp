@@ -7,7 +7,7 @@
 </nav>
 
 <% if current_employee.permission == 3 %>
-
+<!-- ADMIN VIEW -->
 <div class="container">
   <h4>Admin Controls</h4>
     <%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>
@@ -31,7 +31,115 @@
             <%= link_to employee.username, edit_employee_path(employee) %>
           </td>
           <td>
-            <%= link_to employee.permission, edit_employee_path(employee) %>
+            <% if employee.permission == 3 %>
+                Admin
+                <% elsif employee.permission == 2 %>
+                  Server
+                  <% else %>
+                    Cook
+              <% end %>
+          </td>
+        </tr>
+
+        <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+<div class="container">
+    <h4>Group Controls</h4>
+      <%= link_to "Create New Group", new_group_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Groups", groups_path, method: :get %>
+  </div>
+
+    <div class="container">
+      <h5>All Current Groups</h5>
+      <table class="table" id="link-table">
+        <thead>
+          <tr>
+            <th>Group #</th>
+            <th>Guest Count</th>
+            <th>Server</th>
+            <th>Add Order</th>
+            <th>Current Check Total</th>
+            <th>Payment Status</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <% @groups.each do |group| %>
+
+          <tr>
+            <td>
+              <%= group.id %>
+            </td>
+            <td>
+              <%= group.guest_count %> Guests
+            </td>
+            <td>
+              <%= group.employee.username %>
+            </td>
+            <td>
+              <%= link_to "New Order", group_path(group) %>
+            <td>
+              $<%= group.the_check() %> Dollars
+            </td>
+            <td>
+              <% if group.paid_for == 1 %>
+                Unpaid
+                <% else %>
+                Paid
+              <% end %>
+            </td>
+          </tr>
+
+          <% end %>
+
+        </tbody>
+      </table>
+    </div>
+
+  <div class="container">
+    <h5>All Current Orders</h5>
+    <h5>Orders</h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Group #</th>
+          <th>Food</th>
+          <th>Server</th>
+          <th>Price</th>
+          <th>Edit Order</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @orders.each do |order| %>
+
+        <tr>
+          <td>
+            <%= order.group.id %>
+          <td>
+            <%= order.food.name %>
+          </td>
+          <td>
+              <%= order.group.employee.username %>
+            </td>
+          <td>
+            $<%= order.food.price %> Dollars
+          </td>
+          <td>
+            <%= link_to "Edit Order", edit_group_order_path(current_employee, order) %>
+          </td>
+          <td>
+            <% if order.order_up == 1 %>
+                Cooking
+                <% elsif order.order_up == 2 %>
+                  Ready
+                  <% else %>
+                    Served
+              <% end %>
           </td>
         </tr>
 
@@ -43,7 +151,8 @@
 
 <% end %>
 
-<% if current_employee.permission >= 2 %>
+<% if current_employee.permission == 2 %>
+<!-- SERVER VIEW -->
 
   <div class="container">
     <h4>Group Controls</h4>
@@ -97,11 +206,8 @@
       </table>
     </div>
 
-
-
   <div class="container">
     <h5>Orders for Groups being served by <%= current_employee.username %></h5>
-    <h5>Orders</h5>
     <table class="table">
       <thead>
         <tr>
@@ -148,6 +254,8 @@
 <% end %>
 
 <% if current_employee.permission == 1 %>
+<!-- COOK VIEW -->
+
   <div class="container">
     <h5>Orders to be cooked by <%= current_employee.username %></h5>
     <table class="table">
@@ -159,11 +267,11 @@
           <th>Order Status</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="order-body">
 
        <% @notup.each do |order| %>
 
-        <tr id="order-tr">
+        <tr data-timer="<% order.order_time %>">
           <td>
             <%= order.group.id %>
           </td>

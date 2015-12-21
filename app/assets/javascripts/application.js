@@ -17,7 +17,7 @@
 window.onload = init;
   function init(){
 
-
+///shorter times for demontration purposes
   function orderColor(element, curNumber){
     curNumber++;
 
@@ -31,7 +31,26 @@ window.onload = init;
       orderColor(element, curNumber)}, 10000);
   }
 
-  orderColor($('#order-tr'), 0);
+  orderColor($('#order-body'), 0);
 
 }
+
+// var $orderRow = $('#order-body');
+// $orderRow.children('tr').each(function(){
+//     var $row = $(this);
+//     var time = $row.data("timer");
+//     console.log(time);
+
+//     if (time < 3){
+//       $row.css("background-color", "green");
+//     } else if (time >= 18){
+//       $row.css("background-color", "red");
+//     } else if (time >= 7){
+//       $row.css("background-color", "yellow");
+//     } else if (time > 12){
+//       $row.css("background-color", "orange");
+//     }
+// });
+
+
 

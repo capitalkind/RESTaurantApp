@@ -13,6 +13,24 @@
  *= require_tree .
  *= require_self
  */
+body{
+  text-align: center !important;
+}
+h1{
+  text-align: center !important;
+}
+h2{
+  text-align: center !important;
+}
+h3{
+  text-align: center !important;
+}
+th{
+  text-align: center !important;
+}
+
+
+
 .color1{
   background: green;
 }

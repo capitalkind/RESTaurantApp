@@ -3,7 +3,7 @@
 <h4>Logged in as <%= current_employee.username %></h4>
 
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
     <br>
     <%= link_to "New Group", new_group_path, method: :get %>
   </nav>
@@ -38,7 +38,11 @@
             $<%= group.the_check() %> Dollars
           </td>
           <td>
-            <%= group.paid_for %>
+            <% if group.paid_for == 1 %>
+                Unpaid
+                <% else %>
+                Paid
+              <% end %>
           </td>
         </tr>
 
