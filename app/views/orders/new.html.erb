@@ -7,7 +7,7 @@
       <%= f.label "Food" %>
       <%= f.collection_select :food_id, Food.all, :id, :name %>
       <%= f.label :order_up %>
-      <%= f.select :order_up, [['Not Ready', 1], ['Ready', 2]] %>
+      <%= f.select :order_up, [['Not Ready', 1], ['Ready', 2], ['Served', 3]] %>
       <%= f.hidden_field :group_id, :value => @group.id %>
       <%= f.submit %>
     <% end %>

@@ -6,7 +6,7 @@
   <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
 </nav>
 
-<% if current_employee.permission == 2 %>
+<% if current_employee.permission == 3 %>
 
 <div class="container">
   <h4>Admin Controls</h4>
@@ -42,6 +42,8 @@
   </div>
 
 <% end %>
+
+<% if current_employee.permission >= 2 %>
 
   <div class="container">
     <h4>Group Controls</h4>
@@ -129,8 +131,10 @@
           <td>
             <% if order.order_up == 1 %>
                 Cooking
-                <% else %>
-                Ready
+                <% elsif order.order_up == 2 %>
+                  Ready
+                  <% else %>
+                    Served
               <% end %>
           </td>
         </tr>
@@ -140,3 +144,47 @@
       </tbody>
     </table>
   </div>
+
+<% end %>
+
+<% if current_employee.permission == 1 %>
+  <div class="container">
+    <h5>Orders to be cooked by <%= current_employee.username %></h5>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Group #</th>
+          <th>Food</th>
+          <th>Time Ordered</th>
+          <th>Order Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+       <% @notup.each do |order| %>
+
+        <tr id="order-tr">
+          <td>
+            <%= order.group.id %>
+          </td>
+          <td>
+            <%= order.food.name %>
+          </td>
+          <td>
+            <%= order.order_time.round %> Minutes Ago
+          </td>
+          <td>
+            <%= form_for order, url: group_order_path(current_employee, order) do |f| %>
+            <input type="hidden" name="order[order_up]" value="2">
+            <%= f.submit "Complete Order" %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+
+
+      </tbody>
+    </table>
+  </div>
+
+  <% end %>

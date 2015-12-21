@@ -14,3 +14,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+window.onload = init;
+  function init(){
+
+
+  function orderColor(element, curNumber){
+    curNumber++;
+
+    if(curNumber > 4){
+      curNumber = 4;
+    }
+    console.log(curNumber);
+    element.addClass('color' + curNumber, 10000);
+    element.attr('class', 'color' + curNumber);
+    setTimeout(function(){
+      orderColor(element, curNumber)}, 10000);
+  }
+
+  orderColor($('#order-tr'), 0);
+
+}
+

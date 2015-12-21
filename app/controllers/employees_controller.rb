@@ -16,6 +16,7 @@ class EmployeesController < ApplicationController
     @groups = Group.all
     @order = Order.new
     @orders = Order.all
+    @notup = Order.where(:order_up => 1)
     # @employeeorders = current_employee.orders.where(order_up: 0)
     # @employeegroups = current_employee.groups.where(paid_for: 0)
   end
