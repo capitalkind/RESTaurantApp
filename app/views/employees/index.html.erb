@@ -6,11 +6,11 @@
 <% if current_employee.permission == 3 %>
 <!-- ADMIN VIEW -->
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>
   </nav>
 
   <div class="container">
-    <h5>All Employees</h5>
+    <h5><span style="color: red">All Employees</span></h5>
     <table class="table" id="link-table">
       <thead>
         <tr>
@@ -45,7 +45,7 @@
 
 
     <div class="container">
-      <h5>All Current Parties</h5>
+      <h5><span style="color: red">All Current Parties</span></h5>
       <table class="table" id="link-table">
         <thead>
           <tr>
@@ -55,6 +55,7 @@
             <th>Add Order</th>
             <th>Current Check Total</th>
             <th>Payment</th>
+            <th>Edit Party</th>
           </tr>
         </thead>
         <tbody>
@@ -79,6 +80,9 @@
             <td>
               <%= link_to "Party Receipt", party_path(party) %>
             </td>
+            <td>
+              <%= link_to "Edit Party", edit_party_path(party) %>
+            </td>
           </tr>
 
           <% end %>
@@ -88,7 +92,7 @@
     </div>
 
   <div class="container">
-    <h5>All Current Orders</h5>
+    <h5><span style="color: red">All Current Orders</span></h5>
     <table class="table">
       <thead>
         <tr>
@@ -141,7 +145,7 @@
 <% if current_employee.permission == 2 %>
 <!-- SERVER VIEW -->
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>
   </nav>
 
     <div class="container">
@@ -155,6 +159,7 @@
             <th>Add Order</th>
             <th>Sub-Total</th>
             <th>Payment</th>
+            <th>Edit Party</th>
           </tr>
         </thead>
         <tbody>
@@ -178,6 +183,9 @@
             </td>
             <td>
               <%= link_to "Party Receipt", party_path(party) %>
+            </td>
+            <td>
+              <%= link_to "Edit Party", edit_party_path(party) %>
             </td>
           </tr>
 
