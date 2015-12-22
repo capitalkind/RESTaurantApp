@@ -39,46 +39,22 @@ window.onload = init;
   $('.row-data:last-child').after(rows);
   rows.fadeIn(700);
 
-  // function colorize() {
-  //   var orders = $('#order-time');
-  //   for (var i = 0; i < orders.length; i++) {
-  //     var time = new Date($(orders[i].background()));
-  //     if ((Date.now() - time) <= 35000) {
-  //       $(orders[i].css("background-color", "green"));
-  //     } else if ((Date.now() - time) <= 500000) {
-  //       $(orders[i].css("background-color", "yellow"));
-  //      } else if ((Date.now() - time) <= 700000) {
-  //         $(order[i].css("background-color", "orange"));
-  //       } else if ((Date.now() - time) > 1000000) {
-  //         $(order[i].css("background-color", "red"));
-  //       }
-  //     }
-  //   }
+  var $orderRow = $('#order-time');
+  $orderRow.children('tr').each(function(){
+      var $row = $(this);
+      var time = $row.data("timer");
+      console.log(time);
 
-  // function colorize() {
-  //   setInterval(colorize, 10000);
-  //   colorize();
-  // }
-
-
-
-
-var $orderRow = $('#order-time');
-$orderRow.children('tr').each(function(){
-    var $row = $(this);
-    var time = $row.data("timer");
-    console.log(time);
-
-    if (time < 3){
-      $row.css('background-color', 'green');
-    } else if (time >= 9){
-      $row.css('background-color', 'red');
-    } else if (time >= 6){
-      $row.css('background-color', 'orange');
-    } else if (time >= 3){
-      $row.css('background-color', 'yellow');
-    }
-});
+      if (time < 3){
+        $row.css('background-color', 'green');
+      } else if (time >= 9){
+        $row.css('background-color', 'red');
+      } else if (time >= 6){
+        $row.css('background-color', 'orange');
+      } else if (time >= 3){
+        $row.css('background-color', 'yellow');
+      }
+  });
 
 }
 
