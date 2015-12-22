@@ -16,9 +16,9 @@
       <li><strong>Total ... $<%= "%.2f" % ((@party.the_check() * 0.087) + @party.the_check()) %></strong></li>
       <br>
       <li>Suggested Gratuities</li>
-      <li>15% ... $<%= "%.2f" % ((@party.the_check() * 0.237) + @party.the_check()) %></li>
-      <li>20% ... $<%= "%.2f" % ((@party.the_check() * 0.287) + @party.the_check()) %></li>
-      <li>25% ... $<%= "%.2f" % ((@party.the_check() * 0.337) + @party.the_check()) %></li>
+      <li>15% ... $<%= "%.2f" % ((@party.the_check() * 0.15)) %></li>
+      <li>20% ... $<%= "%.2f" % ((@party.the_check() * 0.20)) %></li>
+      <li>25% ... $<%= "%.2f" % ((@party.the_check() * 0.25)) %></li>
       <%= button_to "Complete Payment", party_path(@party), method: :delete, :class => "btn btn-default btn-xs", :id => "pay-button" %>
       <br>
 </div>
