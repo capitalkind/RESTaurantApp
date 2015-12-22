@@ -1,11 +1,9 @@
-<h1>RESTaurant App</h1>
+<h1><span style="color: red">REST</span>aurant</h1>
 <h4>Add A New Party</h4>
-<h4>Logged in as <%= current_employee.username %></h4>
+<h5>Logged in as <span style="color: red"><%= current_employee.username %></span></h5>
 
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
-    <br>
-    <%= link_to "Party Index", parties_path, method: :get %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Party Index", parties_path, method: :get %>
   </nav>
 
 
@@ -15,8 +13,6 @@
       <%= f.number_field :guest_count %>
       <%= f.label "Server" %>
       <%= f.collection_select :employee_id, Employee.all, :id, :username %>
-      <%= f.label "Payment Status" %>
-      <%= f.select :paid_for, [['Paid', 2], ['Unpaid', 1]] %>
-      <%= f.submit %>
+      <%= f.submit :class => "btn btn-default btn-xs" %>
     <% end %>
   </div>

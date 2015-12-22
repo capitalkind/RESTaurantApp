@@ -1,15 +1,13 @@
-<h1>RESTaurant App</h1>
+<h1><span style="color: red">REST</span>aurant</h1>
 <h4>Party Index</h4>
-<h4>Logged in as <%= current_employee.username %></h4>
+<h5>Logged in as <span style="color: red"><%= current_employee.username %></span></h5>
 
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
-    <br>
-    <%= link_to "New Party", new_party_path, method: :get %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Party", new_party_path, method: :get %>
   </nav>
 
   <div class="container">
-    <h5>Parties being served by <%= current_employee.username %></h5>
+    <h5>Parties being served by <span style="color: red"><%= current_employee.username %></span></h5>
     <table class="table" id="link-table">
       <thead>
         <tr>
@@ -35,7 +33,7 @@
             <%= link_to "Edit Party", edit_party_path(party) %>
           </td>
           <td>
-            $<%= party.the_check() %> Dollars
+            $<%= party.the_check() %>
           </td>
           <td>
             <% if party.paid_for == 1 %>

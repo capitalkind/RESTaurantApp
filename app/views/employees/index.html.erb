@@ -1,17 +1,13 @@
-<h1>RESTaurant App</h1>
-<h3>Employee Index</h3>
-<h4>Logged in as <%= current_employee.username %></h4>
+<h1><span style="color: red">REST</span>aurant</h1>
+<h5>Logged in as <span style="color: red"><%= current_employee.username %></span></h5>
 
-<nav>
-  <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
-</nav>
+
 
 <% if current_employee.permission == 3 %>
 <!-- ADMIN VIEW -->
-<div class="container">
-  <h4>Admin Controls</h4>
-    <%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>
-  </div>
+  <nav>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Menu Index", foods_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
+  </nav>
 
   <div class="container">
     <h5>All Employees</h5>
@@ -47,10 +43,6 @@
     </table>
   </div>
 
-<div class="container">
-    <h4>Party Controls</h4>
-      <%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
-  </div>
 
     <div class="container">
       <h5>All Current Parties</h5>
@@ -62,7 +54,7 @@
             <th>Server</th>
             <th>Add Order</th>
             <th>Current Check Total</th>
-            <th>Payment Status</th>
+            <th>Payment</th>
           </tr>
         </thead>
         <tbody>
@@ -82,14 +74,10 @@
             <td>
               <%= link_to "New Order", party_path(party) %>
             <td>
-              $<%= "%.2f" % party.the_check() %> Dollars
+              $<%= "%.2f" % party.the_check() %>
             </td>
             <td>
-              <% if party.paid_for == 1 %>
-                Unpaid
-                <% else %>
-                Paid
-              <% end %>
+              <%= link_to "Party Receipt", party_path(party) %>
             </td>
           </tr>
 
@@ -101,7 +89,6 @@
 
   <div class="container">
     <h5>All Current Orders</h5>
-    <h5>Orders</h5>
     <table class="table">
       <thead>
         <tr>
@@ -127,7 +114,7 @@
             <%= order.party.employee.username %>
           </td>
           <td>
-            $<%= "%.2f" % order.food.price %> Dollars
+            $<%= "%.2f" % order.food.price %>
           </td>
           <td>
             <%= link_to "Edit Order", edit_party_order_path(current_employee, order) %>
@@ -153,14 +140,12 @@
 
 <% if current_employee.permission == 2 %>
 <!-- SERVER VIEW -->
-
-  <div class="container">
-    <h4>Party Controls</h4>
-      <%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
-  </div>
+  <nav>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>&nbsp;&nbsp;<%= link_to "Edit Parties", parties_path, method: :get %>
+  </nav>
 
     <div class="container">
-      <h5>Parties being served by <%= current_employee.username %></h5>
+      <h5>Parties being served by <span style="color: red"><%= current_employee.username %></span></h5>
       <table class="table" id="link-table">
         <thead>
           <tr>
@@ -168,7 +153,7 @@
             <th>Guest Count</th>
             <th>Server</th>
             <th>Add Order</th>
-            <th>Current Check Sub-Total</th>
+            <th>Sub-Total</th>
             <th>Payment</th>
           </tr>
         </thead>
@@ -189,7 +174,7 @@
             <td>
               <%= link_to "New Order", new_party_order_path(party) %>
             <td>
-              $<%= "%.2f" % party.the_check() %> Dollars
+              $<%= "%.2f" % party.the_check() %>
             </td>
             <td>
               <%= link_to "Party Receipt", party_path(party) %>
@@ -203,7 +188,7 @@
     </div>
 
   <div class="container">
-    <h5>Orders for Parties being served by <%= current_employee.username %></h5>
+    <h5>Orders for Parties being served by <span style="color: red"><%= current_employee.username %></span></h5>
     <table class="table">
       <thead>
         <tr>
@@ -225,7 +210,7 @@
             <%= order.food.name %>
           </td>
           <td>
-            $<%= "%.2f" % order.food.price %> Dollars
+            $<%= "%.2f" % order.food.price %>
           </td>
           <td>
             <%= link_to "Edit Order", edit_party_order_path(current_employee, order) %>
@@ -251,9 +236,12 @@
 
 <% if current_employee.permission == 1 %>
 <!-- COOK VIEW -->
+  <nav>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
+  </nav>
 
   <div class="container">
-    <h5>Orders to be cooked by <%= current_employee.username %></h5>
+    <h5>Orders to be cooked by <span style="color: red"><%= current_employee.username %></span></h5>
     <table class="table">
       <thead>
         <tr>
@@ -263,11 +251,11 @@
           <th>Order Status</th>
         </tr>
       </thead>
-      <tbody id="order-body">
+      <tbody id="order-time">
 
        <% @notup.each do |order| %>
 
-        <tr data-timer="<% order.order_time %>">
+        <tr data-timer="<%= order.order_time %>">
           <td>
             <%= order.party_id %>
           </td>
@@ -280,7 +268,7 @@
           <td>
             <%= form_for order, url: party_order_path(current_employee, order) do |f| %>
             <input type="hidden" name="order[order_up]" value="2">
-            <%= f.submit "Complete Order" %>
+            <%= f.submit "Complete Order", :class => "btn btn-default btn-sm"  %>
             <% end %>
           </td>
         </tr>

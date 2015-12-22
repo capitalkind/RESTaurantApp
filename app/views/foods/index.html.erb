@@ -1,10 +1,8 @@
-<h1>RESTaurant App</h1>
+<h1><span style="color: red">REST</span>aurant</h1>
 <h3>Menu Index</h3>
 
   <nav>
-    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>
-    <br>
-    <%= link_to "New Menu Item", new_food_path, method: :get %>
+    <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Employees Index", employees_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Employee", new_employee_path, method: :get %>&nbsp;&nbsp;<%= link_to "New Menu Item", new_food_path, method: :get %>
   </nav>
 
   <div class="container">
@@ -28,7 +26,7 @@
             <%= link_to food.description, edit_food_path(food) %>
           </td>
           <td>
-            <%= link_to food.price, edit_food_path(food) %>
+            <%= link_to "%.2f" % food.price, edit_food_path(food) %>
           </td>
         </tr>
 

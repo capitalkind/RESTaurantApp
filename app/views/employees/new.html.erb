@@ -1,4 +1,4 @@
-<h1>RESTaurant App</h1>
+<h1><span style="color: red">REST</span>aurant</h1>
 <h3>New Employee</h3>
 
 <nav>
@@ -12,5 +12,5 @@
   <%= f.password_field :password %>
   <%= f.label :permission %>
   <%= f.select :permission, [['Admin', 3], ['Server', 2], ['Chef', 1]] %>
-  <%= f.submit %>
+  <%= f.submit :class => "btn btn-default btn-xs" %>
 <% end %>
