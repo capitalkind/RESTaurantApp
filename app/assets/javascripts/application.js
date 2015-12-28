@@ -56,4 +56,10 @@ window.onload = init;
       }
   });
 
+  // var refresh = function(){
+  //   console.log("Page Refresh");
+  //   location.reload();
+  // }
+
+  // setInterval(refresh, 10000)
 }

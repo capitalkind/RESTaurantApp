@@ -98,6 +98,7 @@
         <tr>
           <th>Party #</th>
           <th>Food</th>
+          <th>Notes</th>
           <th>Server</th>
           <th>Price</th>
           <th>Edit Order</th>
@@ -113,6 +114,9 @@
             <%= order.party_id %>
           <td>
             <%= order.food.name %>
+          </td>
+          <td>
+            <%= order.notes %>
           </td>
           <td>
             <%= order.party.employee.username %>
@@ -203,6 +207,7 @@
         <tr>
           <th>Party #</th>
           <th>Food</th>
+          <th>Notes</th>
           <th>Price</th>
           <th>Edit Order</th>
           <th>Order Status</th>
@@ -217,6 +222,9 @@
             <%= order.party_id %>
           <td>
             <%= order.food.name %>
+          </td>
+          <td>
+            <%= order.notes %>
           </td>
           <td>
             $<%= "%.2f" % order.food.price %>
@@ -256,6 +264,7 @@
         <tr>
           <th>Party #</th>
           <th>Food</th>
+          <th>Notes</th>
           <th>Time Ordered</th>
           <th>Order Status</th>
         </tr>
@@ -270,6 +279,9 @@
           </td>
           <td>
             <%= order.food.name %>
+          </td>
+          <td>
+            <%= order.notes %>
           </td>
           <td>
             <%= order.order_time.round %> Minutes Ago

@@ -6,6 +6,7 @@
         <tr>
           <th>Group #</th>
           <th>Food</th>
+          <th>Notes</th>
           <th>Price</th>
           <th>Edit Order</th>
         </tr>
@@ -19,6 +20,9 @@
             <%= order.group.id %>
           <td>
             <%= order.food.name %>
+          </td>
+          <td>
+            <%= order.notes %>
           </td>
           <td>
             $<%= order.food.price %> Dollars

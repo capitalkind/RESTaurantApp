@@ -10,6 +10,8 @@
       <%= f.hidden_field :party_id, :value => @party.id %>
       <%= f.label "Food" %>
       <%= f.collection_select :food_id, Food.all, :id, :name %>
+      <%= f.label :notes %>
+      <%= f.text_field :notes %>
       <%= f.label :order_up %>
       <%= f.select :order_up, [['Cooking', 1], ['Ready', 2], ['Served', 3]] %>
       <%= f.submit :class => "btn btn-default btn-xs" %>

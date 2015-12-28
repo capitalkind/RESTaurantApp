@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151220011821) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "order_up"
+    t.text     "notes"
     t.integer  "food_id"
     t.integer  "party_id"
     t.datetime "created_at", null: false
