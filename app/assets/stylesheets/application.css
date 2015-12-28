@@ -56,7 +56,9 @@ a:hover{
   margin-top: .3em !important;
   margin-bottom: 1em !important;
 }
-
+.table-responsive{
+    overflow-x: auto;
+}
 
 .color1{
   background: green;
