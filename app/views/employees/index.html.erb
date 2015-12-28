@@ -148,7 +148,7 @@
     <%= link_to "Home", root_path, method: :get %>&nbsp;&nbsp;<%= link_to "Log Out", sessions_path, method: :delete %>&nbsp;&nbsp;<%= link_to "Create New Party", new_party_path, method: :get %>
   </nav>
 
-    <div class="table-responsive">
+    <div class="container">
       <h5>Parties being served by <span style="color: red"><%= current_employee.username %></span></h5>
       <table class="table" id="link-table">
         <thead>
