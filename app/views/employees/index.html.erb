@@ -150,50 +150,52 @@
 
     <div class="container">
       <h5>Parties being served by <span style="color: red"><%= current_employee.username %></span></h5>
-      <table class="table" id="link-table">
-        <thead>
-          <tr>
-            <th>Party #</th>
-            <th>Guest Count</th>
-            <th>Server</th>
-            <th>Add Order</th>
-            <th>Sub-Total</th>
-            <th>Payment</th>
-            <th>Edit Party</th>
-          </tr>
-        </thead>
-        <tbody>
+        <div class="table-responsive">
+        <table class="table" id="link-table">
+          <thead>
+            <tr>
+              <th>Party #</th>
+              <th>Guest Count</th>
+              <th>Server</th>
+              <th>Add Order</th>
+              <th>Sub-Total</th>
+              <th>Payment</th>
+              <th>Edit Party</th>
+            </tr>
+          </thead>
+          <tbody>
 
-          <% current_employee.parties.each do |party| %>
+            <% current_employee.parties.each do |party| %>
 
-          <tr>
-            <td>
-              <%= party.id %>
-            </td>
-            <td>
-              <%= party.guest_count %> Guests
-            </td>
-            <td>
-              <%= party.employee.username %>
-            </td>
-            <td>
-              <%= link_to "New Order", new_party_order_path(party) %>
-            </td>
-            <td>
-              $<%= "%.2f" % party.the_check() %>
-            </td>
-            <td>
-              <%= link_to "Party Receipt", party_path(party) %>
-            </td>
-            <td>
-              <%= link_to "Edit Party", edit_party_path(party) %>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <%= party.id %>
+              </td>
+              <td>
+                <%= party.guest_count %> Guests
+              </td>
+              <td>
+                <%= party.employee.username %>
+              </td>
+              <td>
+                <%= link_to "New Order", new_party_order_path(party) %>
+              </td>
+              <td>
+                $<%= "%.2f" % party.the_check() %>
+              </td>
+              <td>
+                <%= link_to "Party Receipt", party_path(party) %>
+              </td>
+              <td>
+                <%= link_to "Edit Party", edit_party_path(party) %>
+              </td>
+            </tr>
 
-          <% end %>
+            <% end %>
 
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+        </div>
     </div>
 
   <div class="container">
