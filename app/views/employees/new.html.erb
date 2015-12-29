@@ -12,5 +12,7 @@
   <%= f.password_field :password %>
   <%= f.label :permission %>
   <%= f.select :permission, [['Admin', 3], ['Server', 2], ['Chef', 1]] %>
+  <%= f.label :currency %>
+  <%= f.select :currency, [['Dollars', 2], ['Euros', 1]] %>
   <%= f.submit :class => "btn btn-default btn-xs" %>
 <% end %>

@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Employee.create(username: 'Malcolm', password: 'malcolm', permission: 3)
-Employee.create(username: 'Steve', password: 'steve', permission: 2)
-Employee.create(username: 'Tim', password: 'tim', permission: 2)
-Employee.create(username: 'Bill', password: 'bill', permission: 1)
+Employee.create(username: 'Malcolm', password: 'malcolm', permission: 3, currency: 2)
+Employee.create(username: 'Steve', password: 'steve', permission: 2, currency: 2)
+Employee.create(username: 'Tim', password: 'tim', permission: 2, currency: 2)
+Employee.create(username: 'Bill', password: 'bill', permission: 1, currency: 2)
 
 Food.create(name: 'Chicken Parm', description: 'Chickeny and Delicious', price: 10.50)
 Food.create(name: 'The Big Salad', description: 'We will hand it to you', price: 11.25)

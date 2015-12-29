@@ -27,6 +27,7 @@ class PartiesController < ApplicationController
 
  def update
     party = Party.find(params[:id])
+    @employee = Employee.find(params[:id])
     party.update(group_params)
     redirect_to parties_path
   end

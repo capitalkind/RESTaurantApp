@@ -4,6 +4,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :username
       t.string :password_digest
       t.integer :permission
+      t.integer :currency
 
       t.timestamps null: false
     end

@@ -60,6 +60,15 @@ a:hover{
     overflow-x: auto;
 }*/
 
+/*@media (max-width: 360px) and (max-width: 1024px){
+  .container{
+    width: 30% !important;
+    text-align: center !important;
+  }
+}
+*/
+
+
 .color1{
   background: green;
 }
