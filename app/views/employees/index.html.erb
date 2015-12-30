@@ -1,27 +1,6 @@
 <h1><span style="color: red">REST</span>aurant</h1>
 <h5>Logged in as <span style="color: red"><%= current_employee.username %></span></h5>
 
-<% if current_employee.currency == 2 %>
-
-  <div>
-    <%= form_for @current_employee do |f| %>
-      <input type="hidden" name="employee[currency]" value="1">
-      <%= f.submit "Change To Euros", :class => "btn btn-default btn-xs"  %>
-    <% end %>
-  </div>
-
-<% end %>
-
-<% if current_employee.currency == 1 %>
-
-  <div>
-    <%= form_for @current_employee do |f| %>
-      <input type="hidden" name="employee[currency]" value="2">
-      <%= f.submit "Change To Dollars", :class => "btn btn-default btn-xs"  %>
-    <% end %>
-  </div>
-
-<% end %>
 
 <% if current_employee.permission == 3 %>
 <!-- ADMIN VIEW -->
@@ -175,6 +154,29 @@
 
 <% if current_employee.permission == 2 %>
 <!-- SERVER VIEW DOLLARS-->
+
+  <% if current_employee.currency == 2 %>
+
+  <div>
+    <%= form_for @current_employee do |f| %>
+      <input type="hidden" name="employee[currency]" value="1">
+      <%= f.submit "Change To Euros", :class => "btn btn-default btn-xs"  %>
+    <% end %>
+  </div>
+
+  <% end %>
+
+  <% if current_employee.currency == 1 %>
+
+    <div>
+      <%= form_for @current_employee do |f| %>
+        <input type="hidden" name="employee[currency]" value="2">
+        <%= f.submit "Change To Dollars", :class => "btn btn-default btn-xs"  %>
+      <% end %>
+    </div>
+
+  <% end %>
+
 
   <% if current_employee.currency == 2 %>
 
