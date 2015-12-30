@@ -33,7 +33,7 @@ class EmployeesController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @employee = Employee.find(params[:id])
-    employee.update(employee_params)
+    @employee.update(employee_params)
     redirect_to employees_path
   end
 

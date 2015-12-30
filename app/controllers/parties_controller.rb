@@ -47,7 +47,7 @@ class PartiesController < ApplicationController
   private
 
   def group_params
-    params.require(:party).permit(:guest_count, :paid_for, :employee_id)
+    params.require(:party).permit(:guest_count, :paid_for, :employee_id, :order_id)
 
   end
 
