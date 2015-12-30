@@ -160,7 +160,7 @@
   <div>
     <%= form_for @current_employee do |f| %>
       <input type="hidden" name="employee[currency]" value="1">
-      <%= f.submit "Change To Euros", :class => "btn btn-default btn-xs"  %>
+      <%= f.submit "Change To Euros", :class => "btn btn-default btn-xs", :id => "currency-button"  %>
     <% end %>
   </div>
 
@@ -171,7 +171,7 @@
     <div>
       <%= form_for @current_employee do |f| %>
         <input type="hidden" name="employee[currency]" value="2">
-        <%= f.submit "Change To Dollars", :class => "btn btn-default btn-xs"  %>
+        <%= f.submit "Change To Dollars", :class => "btn btn-default btn-xs", :id => "currency-button"  %>
       <% end %>
     </div>
 
