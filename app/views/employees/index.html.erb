@@ -323,7 +323,7 @@
                 <%= link_to "New Order", new_party_order_path(party) %>
               </td>
               <td>
-                €<%= "%.2f" % (party.the_check() * 0.91) %>
+                €<%= "%.2f" % (party.the_check() * @rate) %>
               </td>
               <td>
                 <%= link_to "Party Receipt", party_path(party) %>
@@ -366,7 +366,7 @@
               <%= order.notes %>
             </td>
             <td>
-              €<%= "%.2f" % (order.food.price * 0.91) %>
+              €<%= "%.2f" % (order.food.price * @rate) %>
             </td>
             <td>
               <%= link_to "Edit Order", edit_party_order_path(current_employee, order) %>

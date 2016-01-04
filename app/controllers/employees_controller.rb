@@ -17,6 +17,9 @@ class EmployeesController < ApplicationController
     @order = Order.new
     @orders = Order.all
     @notup = Order.where(:order_up => 1)
+    response = HTTParty.get("https://openexchangerates.org/api/latest.json?app_id=13ab24717b22465f9943f3cf3ec69f39")
+    result = JSON.parse(response.body)
+    @rate = result["rates"]["EUR"]
     # @employeeorders = current_employee.orders.where(order_up: 0)
     # @employeegroups = current_employee.groups.where(paid_for: 0)
   end
@@ -46,7 +49,7 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:username, :password, :permission, :currency, :party_id, :order_id)
+    params.require(:employee).permit(:username, :password, :permission, :currency, :party_id, :party_rate, :order_id)
   end
 
 

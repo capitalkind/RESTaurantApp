@@ -3,6 +3,7 @@ class CreateParties < ActiveRecord::Migration
     create_table :parties do |t|
       t.integer :guest_count
       t.integer :paid_for
+      t.decimal :rate
       t.references :employee, index: true, foreign_key: true
 
 

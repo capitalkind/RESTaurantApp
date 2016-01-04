@@ -34,6 +34,9 @@ class PartiesController < ApplicationController
 
   def show
     @party = Party.find(params[:id])
+    response = HTTParty.get("https://openexchangerates.org/api/latest.json?app_id=13ab24717b22465f9943f3cf3ec69f39")
+    result = JSON.parse(response.body)
+    @rate = result["rates"]["EUR"]
     # @order = Order.new
     # @orders = Order.where(id = @party.id)
   end
@@ -47,7 +50,7 @@ class PartiesController < ApplicationController
   private
 
   def group_params
-    params.require(:party).permit(:guest_count, :paid_for, :employee_id, :order_id)
+    params.require(:party).permit(:guest_count, :paid_for, :rate, :employee_id, :order_id)
 
   end
 

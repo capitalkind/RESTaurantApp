@@ -37,14 +37,14 @@
         <li><strong><%= order.food.name %></strong> ... €<%= "%.2f" % (order.food.price * 0.91) %></li>
         <% end %>
         <br>
-        <li>Sub-Total ... €<%= "%.2f" % (@party.the_check() * 0.91) %></li>
-        <li>Tax ... €<%= "%.2f" % ((@party.the_check() * 0.087) * 0.91) %></li>
-        <li><strong>Total ... €<%= "%.2f" % (((@party.the_check() * 0.087) * 0.91) + (@party.the_check() * 0.91)) %></strong></li>
+        <li>Sub-Total ... €<%= "%.2f" % (@party.the_check() * @rate) %></li>
+        <li>Tax ... €<%= "%.2f" % ((@party.the_check() * 0.087) * @rate) %></li>
+        <li><strong>Total ... €<%= "%.2f" % (((@party.the_check() * 0.087) * @rate) + (@party.the_check() * @rate)) %></strong></li>
         <br>
         <li>Suggested Gratuities</li>
-        <li>15% ... €<%= "%.2f" % ((@party.the_check() * 0.15) * 0.91) %></li>
-        <li>20% ... €<%= "%.2f" % ((@party.the_check() * 0.20) * 0.91) %></li>
-        <li>25% ... €<%= "%.2f" % ((@party.the_check() * 0.25) * 0.91) %></li>
+        <li>15% ... €<%= "%.2f" % ((@party.the_check() * 0.15) * @rate) %></li>
+        <li>20% ... €<%= "%.2f" % ((@party.the_check() * 0.20) * @rate) %></li>
+        <li>25% ... €<%= "%.2f" % ((@party.the_check() * 0.25) * @rate) %></li>
         <%= button_to "Complete Payment", party_path(@party), method: :delete, :class => "btn btn-default btn-xs", :id => "pay-button" %>
         <br>
   </div>

@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20151220011821) do
   create_table "parties", force: :cascade do |t|
     t.integer  "guest_count"
     t.integer  "paid_for"
+    t.decimal  "rate"
     t.integer  "employee_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
